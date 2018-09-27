@@ -1,0 +1,30 @@
+server:
+  port: 8899
+
+spring:
+  application:
+    name: eureka-server
+  profiles:
+    active: dev
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    health:
+      show-details: ALWAYS
+
+eureka:
+  client:
+    healthcheck:
+      enabled: true
+    registry-fetch-interval-seconds: 5
+  server:
+    enable-self-preservation: false
+  instance:
+    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${spring.application.instance_id:${server.port}}
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 10
+    lease-expiration-duration-in-seconds: 10

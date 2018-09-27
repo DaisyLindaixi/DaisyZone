@@ -1,0 +1,16 @@
+spring:
+  profiles: dev
+
+eureka:
+  instance:
+    prefer-ip-address: true
+    lease-renewal-interval-in-seconds: 10
+    lease-expiration-duration-in-seconds: 10
+    ip-address: 192.168.50.225
+    #secure-port: 8443
+    #secure-port-enabled: true
+  client:
+    fetch-registry: false
+    register-with-eureka: false
+    service-url:
+      defaultZone: http://192.168.50.225:8899/eureka
