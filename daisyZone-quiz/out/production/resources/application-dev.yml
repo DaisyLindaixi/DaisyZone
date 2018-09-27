@@ -1,0 +1,65 @@
+spring:
+  profiles: dev
+  datasource:
+    url: jdbc:mysql://localhost:3306/quiz_zone?useUnicode=true&characterEncoding=utf8&useSSL=false
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    initialSize: 1
+    minIdle: 1
+    maxActive: 3
+    maxWait: 60000
+    timeBetweenEvictionRunsMillis: 60000
+    minEvictableIdleTimeMillis: 300000
+    validationQuery: SELECT 'x'
+    testWhileIdle: true
+    testOnBorrow: false
+    testOnReturn: false
+    poolPreparedStatements: false
+    maxPoolPreparedStatementPerConnectionSize: 20
+    filters: wall,stat
+
+  redis:
+    host: 127.0.0.1
+    port: 6379
+    jedis:
+      pool:
+        max-idle: 100
+        min-idle: 10
+        max-wait: 2000
+    database: 0
+    #    这个要提交其他不能提交
+    security-database: 1
+    timeout: 20000
+
+#publish:
+#  channel-name: RealTimeData
+#  mode: redis
+#  #  host: 192.168.50.202
+#  host: 120.78.139.181
+#  port: 6379
+
+#websocket:
+#  server: 0.0.0.0
+#  port: 41904
+#  command-max-timeout: 1200
+#  path: /remote/control
+#  ssl:
+#    enable: true
+#    jksPath: E:/origins/api.hnjme.com.jks
+#    keyStorePassword: hnjme.com
+#    keyManagerPassword: hnjme.com
+#    needsClientAuth: false
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://192.168.50.225:8899/eureka
+    fetch-registry: true
+    register-with-eureka: true
+  instance:
+    prefer-ip-address: true
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.name}
+
+

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.daisyZone.quiz.mapper.QuizMapper">
+
+    <!--题目全字段-->
+    <sql id="fullColumns">
+        `pid`,
+        `title`,
+        `remark`,
+        `ctime`,
+        `utime`
+	</sql>
+
+    <!--题目表名-->
+    <sql id="tableName">
+        t_quiz
+    </sql>
+
+    <!-- 查询 题目-->
+    <select id="query" parameterType="quiz" resultType="quiz">
+        select
+        <include refid="fullColumns"/>
+        from   <include refid="tableName"/>
+        order by `pid`
+    </select>
+</mapper>

@@ -1,0 +1,41 @@
+server:
+  port: 8000
+  servlet:
+    context-path: /quizZone
+spring:
+  application:
+    name: quizZone-service
+  profiles:
+    active: dev
+logging:
+  config: classpath:public/logback.xml
+
+#telecontrol:
+#  server: 0.0.0.0
+#  port: 41903
+#  health-report-interval: 300
+#
+#middleware:
+#  queue-capacity: 10000
+#  max-threads: 30
+#
+#heartbeat:
+#  read-timeout: 30
+#  write-timeout: 10logback.xml
+
+#management:
+#  endpoints:
+#    web:
+#      exposure:
+#        include: "*"
+#  endpoint:
+#    health:
+#      show-details: ALWAYS
+
+eureka:
+  instance:
+    leaseRenewalIntervalInSeconds: 10
+    health-check-url-path: ${server.servlet.context-path}/actuator/health
+    status-page-url-path: ${server.servlet.context-path}/swagger-ui.html
+  client:
+    registry-fetch-interval-seconds: 5
